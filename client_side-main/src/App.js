@@ -48,7 +48,7 @@ render() {
         <BrowserRouter>
           <Switch>
             <Route 
-              exact path='/' 
+              exact path='/Home' 
               render={props => (
               <Home {...props} handleLogout={this.handleLogout} user={this.state.user} loggedInStatus={this.state.isLoggedIn}/>
               )}
