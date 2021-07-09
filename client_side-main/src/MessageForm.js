@@ -13,7 +13,7 @@ export default class MessageForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-     axios.post("http://localhost:3003/chatrooms/messages") 
+     axios.post("https://neighboraid.herokuapp.com/chatrooms/messages") 
      .then(response => {
       if (response.data.status === 'created') {
          this.props.requests(response.data)

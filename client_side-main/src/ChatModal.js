@@ -31,7 +31,7 @@ const ModalChat = (props) => {
       volunteer_id: props.volunteer.id,
       // id: Math.floor(Math.random() * Math.floor(100000)) + 1
     }
-      axios.post("http://localhost:3003/chatrooms", {chatroom})
+      axios.post("https://neighboraid.herokuapp.com/chatrooms", {chatroom})
       .then (response => {
         if (response.status === 200) {
           const chatroom = JSON.parse(response.request.requestData).chatroom;

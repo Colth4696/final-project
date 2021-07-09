@@ -29,7 +29,7 @@ const MyMarker = (props) => {
     }
       console.log(props.user)
       console.log(volunteer)
-      axios.post("http://localhost:3003/volunteers", {volunteer})
+      axios.post("https://neighboraid.herokuapp.com/volunteers", {volunteer})
         .then(response => {
           console.log(response.data)
           if (response.data.status === "created") {

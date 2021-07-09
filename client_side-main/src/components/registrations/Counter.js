@@ -11,7 +11,7 @@ class Counter extends Component {
     }
 
     // componentDidMount() {
-    //     axios.get("http://localhost:3003/requests")
+    //     axios.get("https://neighboraid.herokuapp.com/requests")
     //     .then(response => {
     //         console.log(response.data)
     //         this.setState({ requests: response.data.requests });

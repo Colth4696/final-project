@@ -29,7 +29,7 @@ let user = {
       password: password
     }
     
-    axios.post('http://localhost:3003/login', {user}, {withCredentials: true})
+    axios.post('https://neighboraid.herokuapp.com/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
