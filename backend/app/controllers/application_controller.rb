@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
     helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
-  def login!
+    def user_id
+      if decoded_token
+        decoded_token[0]["user_id"]
+      end
+    end
+    def login!
       session[:user_id] = @user.id
     end
   def logged_in?
@@ -15,5 +20,8 @@ class ApplicationController < ActionController::Base
      end
   def logout!
        session.clear
+     end
+     def fallback_index_html
+      render :file => 'public/index.html'
      end
 end
