@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
+  "proxy": "http://localhost:3000",
   "engines": {"node": "14.16.0"},
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
