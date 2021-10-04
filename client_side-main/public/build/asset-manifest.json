@@ -8,7 +8,7 @@
     "static/css/2.d0ac3f2a.chunk.css": "./static/css/2.d0ac3f2a.chunk.css",
     "static/js/2.20ae4564.chunk.js": "./static/js/2.20ae4564.chunk.js",
     "static/js/2.20ae4564.chunk.js.map": "./static/js/2.20ae4564.chunk.js.map",
-    "index.html": "./index.html",
+    "index.html": "client_side_main/public/build/index.html",
     "static/css/2.d0ac3f2a.chunk.css.map": "./static/css/2.d0ac3f2a.chunk.css.map",
     "static/css/main.4383cae2.chunk.css.map": "./static/css/main.4383cae2.chunk.css.map",
     "static/js/2.20ae4564.chunk.js.LICENSE.txt": "./static/js/2.20ae4564.chunk.js.LICENSE.txt",
