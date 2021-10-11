@@ -11,7 +11,7 @@
   },
   "version": "0.1.0",
   "scripts": {
-    "build": "cd client_side-main && npm install && npm build && cd ..",
+    "build": "cd client_side-main && npm install && npm build",
     "deploy": "cp -a client_side-main/build/. public/",
     "postinstall": "npm build && npm deploy && echo 'Client_side Built!'"
   },
