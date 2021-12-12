@@ -41,7 +41,7 @@ class ChatBox extends Component {
     //   volunteer_id: this.props.volunteer.id
     // }
 
-//     axios.post("https://neighboraid.herokuapp.com/messages", { message },
+//     axios.post("https://lastdance.herokuapp.com/messages", { message },
 //       { withCredentials: true }
 //     )
 //     .then(response => {

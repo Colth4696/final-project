@@ -33,7 +33,7 @@ class RequestForm extends Component {
           category: category
         }
 
-            axios.post("https://neighboraid.herokuapp.com/requests", {request},
+            axios.post("https://lastdance.herokuapp.com/requests", {request},
             { withCredentials: true }
             )
             .then(response => {

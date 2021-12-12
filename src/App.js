@@ -19,7 +19,7 @@ componentDidMount() {
 }
 
 loginStatus = () => {
-    axios.get('https://neighboraid.herokuapp.com/logged_in', {withCredentials: true})
+    axios.get('https://lastdance.herokuapp.com/logged_in', {withCredentials: true})
     .then(response => {
       console.log(response);
       if (response.data.logged_in) {
