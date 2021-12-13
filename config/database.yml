@@ -110,13 +110,15 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: db/production.pg
-#    pool: 5
-#   timeout: 5000
-#   username: colthafer
-#   password: 'Hector45!'
-
 production:
   <<: *default
+  database: db/production.pg
+   pool: 5
+  timeout: 5000
+  username: colthafer
+  password: 'Hector45!'
+
+# production:
+#   <<: *default
+#   username: inhmqlygpzksig
+#   password: 975733df064912c3eca5c760de4194c37e809efd54c7f09d2d62b9d4ca374161
