@@ -11,7 +11,7 @@ class RequestMarkers extends React.Component {
 };
 
 componentDidMount() {
- axios.get("https://lastdance.herokuapp.com/requests")
+ axios.get("/requests")
   .then(response => {
     console.log(response.data)
     this.setState({ requests: response.data.requests});

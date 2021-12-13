@@ -10,7 +10,7 @@ class MessageList extends Component {
     };
     
     componentDidMount() {
-        axios.get('https://lastdance.herokuapp.com/messages')
+        axios.get('/messages')
             .then(res => {
                 const message = res.data;
                 this.setState({ message });

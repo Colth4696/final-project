@@ -24,7 +24,7 @@ class VolunteerButton extends Component {
       user_id: user_id,
       request_id: request_id
     }
-        axios.post("https://lastdance.herokuapp.com/user_requests", {user_request}, {withCredentials: true})
+        axios.post("/user_requests", {user_request}, {withCredentials: true})
         .then(response => {
             if (response.data.status === 'created') {
             this.props.user_requests(response.data)

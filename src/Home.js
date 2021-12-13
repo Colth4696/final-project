@@ -10,7 +10,7 @@ class Home extends Component {
   }
   
  handleClick = () => {
-    axios.delete('https://lastdance.herokuapp.com/logout', {withCredentials: true})
+    axios.delete('/logout', {withCredentials: true})
     .then(response => {
       this.props.handleLogout()
       this.props.history.push('/')

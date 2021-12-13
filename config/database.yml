@@ -49,10 +49,10 @@ default: &default
 development:
   <<: *default
   database: db/development.pg
-  # pool: 5
-  # timeout: 5000
-  # username: colthafer
-  # password: 'Hector45!'
+  pool: 5
+  timeout: 5000
+  username: colthafer
+  password: 'Hector45!'
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -87,8 +87,8 @@ development:
 test:
   <<: *default
   database: db/test.pg
-  #  pool: 5
-  # timeout: 5000
+   pool: 5
+  timeout: 5000
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -117,8 +117,3 @@ production:
   timeout: 5000
   username: colthafer
   password: 'Hector45!'
-
-# production:
-#   <<: *default
-#   username: inhmqlygpzksig
-#   password: 975733df064912c3eca5c760de4194c37e809efd54c7f09d2d62b9d4ca374161

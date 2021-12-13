@@ -29,7 +29,7 @@ let user = {
       password: password
     }
     
-    axios.post('https://lastdance.herokuapp.com/login', {user}, {withCredentials: true})
+    axios.post('/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
