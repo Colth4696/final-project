@@ -1,2 +1,2 @@
 web: npm start
-api: bundle exec pg 
+api: bundle exec puma -C config/puma.rb
