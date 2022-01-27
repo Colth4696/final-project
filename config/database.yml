@@ -73,7 +73,7 @@ development:
   #port: 5432
 
   # Schema search path. The server defaults to $user,public
-  #schema_search_path: myapp,sharedapp,public
+  #schema_search_path: myapp,sharedapp,public,final-project
 
   # Minimum log levels, in increasing order:
   #   debug5, debug4, debug3, debug2, debug1,
@@ -87,7 +87,6 @@ development:
 test:
   <<: *default
   database: db/test.pg
-   pool: 5
   timeout: 5000
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -113,7 +112,6 @@ test:
 production:
   <<: *default
   database: db/production.pg
-   pool: 5
   timeout: 5000
   username: colthafer
   password: 'Hector45!'
