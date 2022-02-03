@@ -3,7 +3,7 @@ default:
   adapter: postgresql
   encoding: unicode
 <<<<<<< HEAD
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS\") { 5 } %>"
 development: 
   adapter: postgresql
   database: db/development.pg
@@ -43,7 +43,7 @@ database: db/development.pg
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  port: 3003
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -87,6 +87,6 @@ production:
   database: db/production.pg
   encoding: unicode
   password: Hector45!
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS\") { 5 } %>"
   timeout: 5000
   username: colthafer
