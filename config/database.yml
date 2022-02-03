@@ -83,7 +83,6 @@ test:
 #
 production:
   <<: *default
->>>>>>> 5ae03535761a318b2fd2671d07ad86cd727d377d
   database: db/production.pg
   encoding: unicode
   password: Hector45!
