@@ -5,9 +5,6 @@ import Header from './Header'
 import Dashboard from './components/registrations/Dashboard'
 
 class Home extends Component {
-  constructor(props){
-  super(props)
-  }
   
  handleClick = () => {
     axios.delete('/logout', {withCredentials: true})

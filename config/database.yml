@@ -2,7 +2,6 @@
 default: 
   adapter: postgresql
   encoding: unicode
-<<<<<<< HEAD
   pool: "<%= ENV.fetch("RAILS_MAX_THREADS\") { 5 } %>"
 development: 
   adapter: postgresql
@@ -12,15 +11,9 @@ development:
   pool: 5
   timeout: 5000
   username: colthafer
-production: 
-  adapter: postgresql
-=======
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
-  <<: *default
+
 database: db/development.pg
   pool: 5
   timeout: 5000
