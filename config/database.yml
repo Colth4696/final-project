@@ -1,30 +1,35 @@
---- 
-default: 
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On macOS with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On macOS with MacPorts:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem 'pg'
+#
+default: &default
   adapter: postgresql
   encoding: unicode
-  pool: "<%= ENV.fetch("RAILS_MAX_THREADS\") { 5 } %>"
-development: 
-  adapter: postgresql
-  database: db/development.pg
-  encoding: unicode
-  password: Hector45!
-  pool: 5
-  timeout: 5000
-  username: colthafer
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
-database: db/development.pg
-  pool: 5
-  timeout: 5000
-  username: colthafer
-  password: 'Hector45!'
+development:
+  <<: *default
+  database: project_eight_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: myapp
+  #username: de_ocho
 
   # The password associated with the postgres role (username).
   #password:
@@ -36,7 +41,7 @@ database: db/development.pg
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  port: 3003
+  port: 4321
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -52,7 +57,7 @@ database: db/development.pg
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.pg
+  database: project_eight_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -76,9 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: db/production.pg
-  encoding: unicode
-  password: Hector45!
-  pool: "<%= ENV.fetch("RAILS_MAX_THREADS\") { 5 } %>"
-  timeout: 5000
-  username: colthafer
+  database: project_eight_production
+  username: postgres
+  password: <%= ENV['PROJECT_EIGHT_DATABASE_PASSWORD'] %>
