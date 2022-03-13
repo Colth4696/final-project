@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ActionCableProvider } from 'react-actioncable-provider';
-import './App.css';
+import './index.css';
 import App from './App';
 import {API_WS_ROOT} from './constants';
 // This readys a consumer that will connect against /cable on your backend server by default.

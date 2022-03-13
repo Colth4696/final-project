@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './Home'
-import Login from './components/registrations/Login'
-import Signup from './components/registrations/Signup'
+import axios from 'axios';
+import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import Home from './Home';
+import Login from './components/registrations/Login';
+import Signup from './components/registrations/Signup';
 
 class App extends Component {
   constructor(props) {
