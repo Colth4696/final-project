@@ -1,3 +1,2 @@
-web: bundle exec rails server -p $PORT
-worker: bundle exec rake jobs:work
-web: bundle exec puma -C config/puma.rb
+web: PORT=3000 npm --cwd client start
+api: PORT=3001 bundle exec rails s
