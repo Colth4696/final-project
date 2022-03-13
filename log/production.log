@@ -1,0 +1,269 @@
+D, [2022-03-12T21:45:48.426406 #15578] DEBUG -- :   [1m[35m (32.0ms)[0m  [1m[35mCREATE DATABASE "project_eight_production" ENCODING = 'unicode'[0m
+D, [2022-03-12T21:46:18.370373 #15612] DEBUG -- :   [1m[35m (35.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+D, [2022-03-12T21:46:18.382730 #15612] DEBUG -- :   [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+D, [2022-03-12T21:46:18.404367 #15612] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3579704205347956980)[0m
+D, [2022-03-12T21:46:18.443348 #15612] DEBUG -- :   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+I, [2022-03-12T21:46:18.446784 #15612]  INFO -- : Migrating to CreateUsers (20210121030529)
+D, [2022-03-12T21:46:18.453649 #15612] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:46:18.474474 #15612] DEBUG -- :   [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+D, [2022-03-12T21:46:18.491308 #15612] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (12.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121030529"]]
+D, [2022-03-12T21:46:18.493170 #15612] DEBUG -- :   [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:46:18.493329 #15612]  INFO -- : Migrating to CreateRequests (20210121030925)
+D, [2022-03-12T21:46:18.499120 #15612] DEBUG -- :   [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:46:18.526430 #15612] DEBUG -- :   [1m[35m (26.3ms)[0m  [1m[35mCREATE TABLE "requests" ("id" bigserial primary key, "title" character varying, "description" text, "latitude" decimal, "longitude" decimal, "category" character varying, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_8ead8b1e6b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2022-03-12T21:46:18.538259 #15612] DEBUG -- :   [1m[35m (3.6ms)[0m  [1m[35mCREATE  INDEX  "index_requests_on_user_id" ON "requests"  ("user_id")[0m
+D, [2022-03-12T21:46:18.548824 #15612] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (5.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121030925"]]
+D, [2022-03-12T21:46:18.554840 #15612] DEBUG -- :   [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:46:18.555017 #15612]  INFO -- : Migrating to CreateMessages (20210121050734)
+D, [2022-03-12T21:46:18.574646 #15612] DEBUG -- :   [1m[35m (9.9ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:46:18.605579 #15612] DEBUG -- :   [1m[35m (30.4ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "body" text, "chatroom_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5d3b5a27f5"
+FOREIGN KEY ("chatroom_id")
+  REFERENCES "chatrooms" ("id")
+, CONSTRAINT "fk_rails_273a25a7a6"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2022-03-12T21:46:18.607438 #15612] DEBUG -- :   [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+D, [2022-03-12T21:46:18.609488 #15612] DEBUG -- :   [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3579704205347956980)[0m
+D, [2022-03-12T21:50:09.840418 #15700] DEBUG -- :   [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3579704205347956980)[0m
+D, [2022-03-12T21:50:09.859934 #15700] DEBUG -- :   [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+I, [2022-03-12T21:50:09.861992 #15700]  INFO -- : Migrating to CreateChatrooms (20210121050134)
+D, [2022-03-12T21:50:09.867020 #15700] DEBUG -- :   [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:50:09.880352 #15700] DEBUG -- :   [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "chatrooms" ("id" bigserial primary key, "name" character varying, "request_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_701512cadc"
+FOREIGN KEY ("request_id")
+  REFERENCES "requests" ("id")
+)[0m
+D, [2022-03-12T21:50:09.886611 #15700] DEBUG -- :   [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_chatrooms_on_request_id" ON "chatrooms"  ("request_id")[0m
+D, [2022-03-12T21:50:09.892315 #15700] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121050134"]]
+D, [2022-03-12T21:50:09.898524 #15700] DEBUG -- :   [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:50:09.898713 #15700]  INFO -- : Migrating to CreateMessages (20210121050734)
+D, [2022-03-12T21:50:09.902314 #15700] DEBUG -- :   [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:50:09.909225 #15700] DEBUG -- :   [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "body" text, "chatroom_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5d3b5a27f5"
+FOREIGN KEY ("chatroom_id")
+  REFERENCES "chatrooms" ("id")
+, CONSTRAINT "fk_rails_273a25a7a6"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2022-03-12T21:50:09.912710 #15700] DEBUG -- :   [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_messages_on_chatroom_id" ON "messages"  ("chatroom_id")[0m
+D, [2022-03-12T21:50:09.917852 #15700] DEBUG -- :   [1m[35m (3.5ms)[0m  [1m[35mCREATE  INDEX  "index_messages_on_user_id" ON "messages"  ("user_id")[0m
+D, [2022-03-12T21:50:09.919754 #15700] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121050734"]]
+D, [2022-03-12T21:50:09.922745 #15700] DEBUG -- :   [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:50:09.922970 #15700]  INFO -- : Migrating to CreateVolunteers (20210122030619)
+D, [2022-03-12T21:50:09.930743 #15700] DEBUG -- :   [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:50:09.934590 #15700] DEBUG -- :   [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "volunteers" ("id" bigserial primary key, "user_id" bigint NOT NULL, "request_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a0ce868c0b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_b1875e87ea"
+FOREIGN KEY ("request_id")
+  REFERENCES "requests" ("id")
+)[0m
+D, [2022-03-12T21:50:09.939850 #15700] DEBUG -- :   [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX  "index_volunteers_on_user_id" ON "volunteers"  ("user_id")[0m
+D, [2022-03-12T21:50:09.942908 #15700] DEBUG -- :   [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_volunteers_on_request_id" ON "volunteers"  ("request_id")[0m
+D, [2022-03-12T21:50:09.949441 #15700] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210122030619"]]
+D, [2022-03-12T21:50:09.951075 #15700] DEBUG -- :   [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:50:09.951185 #15700]  INFO -- : Migrating to AddVolunteerRefToChatroom (20210124175217)
+D, [2022-03-12T21:50:10.022608 #15700] DEBUG -- :   [1m[35m (6.3ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:50:10.024976 #15700] DEBUG -- :   [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "chatroom" ADD "volunteer_id" bigint[0m
+D, [2022-03-12T21:50:10.025261 #15700] DEBUG -- :   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+D, [2022-03-12T21:50:10.026275 #15700] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3579704205347956980)[0m
+D, [2022-03-12T21:51:49.891435 #15754] DEBUG -- :   [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2022-03-12T21:51:49.908998 #15754] DEBUG -- :   [1m[35m (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2022-03-12T21:52:20.034186 #15774] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+D, [2022-03-12T21:52:20.045258 #15774] DEBUG -- :   [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:52:20.049823 #15774] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Create (3.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "production"], ["created_at", "2022-03-13 04:52:20.044593"], ["updated_at", "2022-03-13 04:52:20.044593"]]
+D, [2022-03-12T21:52:20.051483 #15774] DEBUG -- :   [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+D, [2022-03-12T21:52:29.303110 #15811] DEBUG -- :   [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2022-03-12T21:52:29.309966 #15811] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2022-03-12T21:52:29.311177 #15811] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2022-03-12T21:52:29.313031 #15811] DEBUG -- :   [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2022-03-12T21:52:29.314831 #15811] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2022-03-12T21:52:29.316590 #15811] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2022-03-12T21:53:03.621561 #15835] DEBUG -- :   [1m[35m (105.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "project_eight_production"[0m
+D, [2022-03-12T21:53:23.805330 #15857] DEBUG -- :   [1m[35m (435.6ms)[0m  [1m[35mCREATE DATABASE "project_eight_production" ENCODING = 'unicode'[0m
+D, [2022-03-12T21:53:37.919810 #15882] DEBUG -- :   [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+D, [2022-03-12T21:53:37.929930 #15882] DEBUG -- :   [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+D, [2022-03-12T21:53:37.948265 #15882] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3579704205347956980)[0m
+D, [2022-03-12T21:53:37.956527 #15882] DEBUG -- :   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+I, [2022-03-12T21:53:37.957196 #15882]  INFO -- : Migrating to CreateUsers (20210121030529)
+D, [2022-03-12T21:53:37.965805 #15882] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:37.975240 #15882] DEBUG -- :   [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+D, [2022-03-12T21:53:37.987757 #15882] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (4.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121030529"]]
+D, [2022-03-12T21:53:37.996513 #15882] DEBUG -- :   [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:53:37.996634 #15882]  INFO -- : Migrating to CreateRequests (20210121030925)
+D, [2022-03-12T21:53:38.004789 #15882] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:38.021935 #15882] DEBUG -- :   [1m[35m (16.9ms)[0m  [1m[35mCREATE TABLE "requests" ("id" bigserial primary key, "title" character varying, "description" text, "latitude" decimal, "longitude" decimal, "category" character varying, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_8ead8b1e6b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2022-03-12T21:53:38.026801 #15882] DEBUG -- :   [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_requests_on_user_id" ON "requests"  ("user_id")[0m
+D, [2022-03-12T21:53:38.032286 #15882] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121030925"]]
+D, [2022-03-12T21:53:38.034102 #15882] DEBUG -- :   [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:53:38.034205 #15882]  INFO -- : Migrating to CreateChatrooms (20210121050134)
+D, [2022-03-12T21:53:38.037026 #15882] DEBUG -- :   [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:38.173924 #15882] DEBUG -- :   [1m[35m (136.5ms)[0m  [1m[35mCREATE TABLE "chatrooms" ("id" bigserial primary key, "name" character varying, "request_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_701512cadc"
+FOREIGN KEY ("request_id")
+  REFERENCES "requests" ("id")
+)[0m
+D, [2022-03-12T21:53:38.179228 #15882] DEBUG -- :   [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_chatrooms_on_request_id" ON "chatrooms"  ("request_id")[0m
+D, [2022-03-12T21:53:38.185130 #15882] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121050134"]]
+D, [2022-03-12T21:53:38.187086 #15882] DEBUG -- :   [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:53:38.187275 #15882]  INFO -- : Migrating to CreateMessages (20210121050734)
+D, [2022-03-12T21:53:38.196968 #15882] DEBUG -- :   [1m[35m (3.5ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:38.205875 #15882] DEBUG -- :   [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "body" text, "chatroom_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5d3b5a27f5"
+FOREIGN KEY ("chatroom_id")
+  REFERENCES "chatrooms" ("id")
+, CONSTRAINT "fk_rails_273a25a7a6"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2022-03-12T21:53:38.211669 #15882] DEBUG -- :   [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_messages_on_chatroom_id" ON "messages"  ("chatroom_id")[0m
+D, [2022-03-12T21:53:38.216107 #15882] DEBUG -- :   [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_messages_on_user_id" ON "messages"  ("user_id")[0m
+D, [2022-03-12T21:53:38.221426 #15882] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210121050734"]]
+D, [2022-03-12T21:53:38.223543 #15882] DEBUG -- :   [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:53:38.223694 #15882]  INFO -- : Migrating to CreateVolunteers (20210122030619)
+D, [2022-03-12T21:53:38.232525 #15882] DEBUG -- :   [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:38.241474 #15882] DEBUG -- :   [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "volunteers" ("id" bigserial primary key, "user_id" bigint NOT NULL, "request_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a0ce868c0b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_b1875e87ea"
+FOREIGN KEY ("request_id")
+  REFERENCES "requests" ("id")
+)[0m
+D, [2022-03-12T21:53:38.247410 #15882] DEBUG -- :   [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_volunteers_on_user_id" ON "volunteers"  ("user_id")[0m
+D, [2022-03-12T21:53:38.254278 #15882] DEBUG -- :   [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_volunteers_on_request_id" ON "volunteers"  ("request_id")[0m
+D, [2022-03-12T21:53:38.257932 #15882] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210122030619"]]
+D, [2022-03-12T21:53:38.261566 #15882] DEBUG -- :   [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+I, [2022-03-12T21:53:38.262134 #15882]  INFO -- : Migrating to AddVolunteerRefToChatroom (20210124175217)
+D, [2022-03-12T21:53:38.269290 #15882] DEBUG -- :   [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:53:38.272705 #15882] DEBUG -- :   [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "chatroom" ADD "volunteer_id" bigint[0m
+D, [2022-03-12T21:53:38.273139 #15882] DEBUG -- :   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+D, [2022-03-12T21:53:38.273588 #15882] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3579704205347956980)[0m
+D, [2022-03-12T21:55:06.728213 #15936] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3579704205347956980)[0m
+D, [2022-03-12T21:55:06.748170 #15936] DEBUG -- :   [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+I, [2022-03-12T21:55:06.750279 #15936]  INFO -- : Migrating to AddVolunteerRefToChatroom (20210124175217)
+D, [2022-03-12T21:55:06.757669 #15936] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:55:06.761045 #15936] DEBUG -- :   [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "chatrooms" ADD "volunteer_id" bigint[0m
+D, [2022-03-12T21:55:06.768235 #15936] DEBUG -- :   [1m[35m (2.8ms)[0m  [1m[35mCREATE  INDEX  "index_chatrooms_on_volunteer_id" ON "chatrooms"  ("volunteer_id")[0m
+D, [2022-03-12T21:55:06.775271 #15936] DEBUG -- :   [1m[35m (6.1ms)[0m  [1m[35mALTER TABLE "chatrooms" ADD CONSTRAINT "fk_rails_5295a71ef4"
+FOREIGN KEY ("volunteer_id")
+  REFERENCES "volunteers" ("id")
+[0m
+D, [2022-03-12T21:55:06.790685 #15936] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210124175217"]]
+D, [2022-03-12T21:55:06.792217 #15936] DEBUG -- :   [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+D, [2022-03-12T21:55:06.799116 #15936] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+D, [2022-03-12T21:55:06.807029 #15936] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+D, [2022-03-12T21:55:06.809336 #15936] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "production"], ["created_at", "2022-03-13 04:55:06.805949"], ["updated_at", "2022-03-13 04:55:06.805949"]]
+D, [2022-03-12T21:55:06.810959 #15936] DEBUG -- :   [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+D, [2022-03-12T21:55:06.811380 #15936] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3579704205347956980)[0m
+I, [2022-03-12T21:55:59.828567 #15972]  INFO -- : [8167e481-9df0-406d-9d67-ab585d423e7c] Started GET "/" for 127.0.0.1 at 2022-03-12 21:55:59 -0700
+F, [2022-03-12T21:55:59.834300 #15972] FATAL -- : [8167e481-9df0-406d-9d67-ab585d423e7c]   
+[8167e481-9df0-406d-9d67-ab585d423e7c] ActionController::RoutingError (No route matches [GET] "/"):
+[8167e481-9df0-406d-9d67-ab585d423e7c]   
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+[8167e481-9df0-406d-9d67-ab585d423e7c] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+[8167e481-9df0-406d-9d67-ab585d423e7c] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+[8167e481-9df0-406d-9d67-ab585d423e7c] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+[8167e481-9df0-406d-9d67-ab585d423e7c] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:97:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] puma (4.3.11) lib/puma/configuration.rb:228:in `call'
+[8167e481-9df0-406d-9d67-ab585d423e7c] puma (4.3.11) lib/puma/server.rb:718:in `handle_request'
+[8167e481-9df0-406d-9d67-ab585d423e7c] puma (4.3.11) lib/puma/server.rb:472:in `process_client'
+[8167e481-9df0-406d-9d67-ab585d423e7c] puma (4.3.11) lib/puma/server.rb:328:in `block in run'
+[8167e481-9df0-406d-9d67-ab585d423e7c] puma (4.3.11) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+I, [2022-03-12T21:56:30.222723 #15973]  INFO -- : [d7afb14e-c379-4414-82a4-4a85101338d5] Started GET "/" for 127.0.0.1 at 2022-03-12 21:56:30 -0700
+F, [2022-03-12T21:56:30.236575 #15973] FATAL -- : [d7afb14e-c379-4414-82a4-4a85101338d5]   
+[d7afb14e-c379-4414-82a4-4a85101338d5] ActionController::RoutingError (No route matches [GET] "/"):
+[d7afb14e-c379-4414-82a4-4a85101338d5]   
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+[d7afb14e-c379-4414-82a4-4a85101338d5] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+[d7afb14e-c379-4414-82a4-4a85101338d5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+[d7afb14e-c379-4414-82a4-4a85101338d5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+[d7afb14e-c379-4414-82a4-4a85101338d5] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:97:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] puma (4.3.11) lib/puma/configuration.rb:228:in `call'
+[d7afb14e-c379-4414-82a4-4a85101338d5] puma (4.3.11) lib/puma/server.rb:718:in `handle_request'
+[d7afb14e-c379-4414-82a4-4a85101338d5] puma (4.3.11) lib/puma/server.rb:472:in `process_client'
+[d7afb14e-c379-4414-82a4-4a85101338d5] puma (4.3.11) lib/puma/server.rb:328:in `block in run'
+[d7afb14e-c379-4414-82a4-4a85101338d5] puma (4.3.11) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+I, [2022-03-12T21:57:03.110037 #15972]  INFO -- : [0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] Started GET "/" for 127.0.0.1 at 2022-03-12 21:57:03 -0700
+F, [2022-03-12T21:57:03.124206 #15972] FATAL -- : [0dec5a1c-fbc0-427d-ab59-cc40ac5671f5]   
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] ActionController::RoutingError (No route matches [GET] "/"):
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5]   
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:97:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] puma (4.3.11) lib/puma/configuration.rb:228:in `call'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] puma (4.3.11) lib/puma/server.rb:718:in `handle_request'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] puma (4.3.11) lib/puma/server.rb:472:in `process_client'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] puma (4.3.11) lib/puma/server.rb:328:in `block in run'
+[0dec5a1c-fbc0-427d-ab59-cc40ac5671f5] puma (4.3.11) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+I, [2022-03-12T22:01:38.556671 #16165]  INFO -- : [835019d1-10cc-4c45-a066-d1b8956a3e8d] Started GET "/" for 127.0.0.1 at 2022-03-12 22:01:38 -0700
+F, [2022-03-12T22:01:38.566727 #16165] FATAL -- : [835019d1-10cc-4c45-a066-d1b8956a3e8d]   
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] ActionController::RoutingError (No route matches [GET] "/"):
+[835019d1-10cc-4c45-a066-d1b8956a3e8d]   
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:97:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] puma (4.3.11) lib/puma/configuration.rb:228:in `call'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] puma (4.3.11) lib/puma/server.rb:718:in `handle_request'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] puma (4.3.11) lib/puma/server.rb:472:in `process_client'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] puma (4.3.11) lib/puma/server.rb:328:in `block in run'
+[835019d1-10cc-4c45-a066-d1b8956a3e8d] puma (4.3.11) lib/puma/thread_pool.rb:134:in `block in spawn_thread'

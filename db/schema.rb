@@ -12,20 +12,23 @@
 
 ActiveRecord::Schema.define(version: 2021_01_24_175217) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
-    t.integer "request_id", null: false
+    t.bigint "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "volunteer_id"
+    t.bigint "volunteer_id"
     t.index ["request_id"], name: "index_chatrooms_on_request_id"
     t.index ["volunteer_id"], name: "index_chatrooms_on_volunteer_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "chatroom_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_175217) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "category"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_requests_on_user_id"
@@ -54,8 +57,8 @@ ActiveRecord::Schema.define(version: 2021_01_24_175217) do
   end
 
   create_table "volunteers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "request_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["request_id"], name: "index_volunteers_on_request_id"
