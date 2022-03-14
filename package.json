@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Colth4696/final-project/issues"
   },
-  "homepage": "https://github.com/Colth4696/final-project#readme"
+  "homepage": "https://github.com/Colth4696/final-project#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^4.7.4"
+  }
 }
